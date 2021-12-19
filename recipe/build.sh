@@ -7,6 +7,7 @@ set -ex
     --disable-debug         \
     --without-x             \
     --with-screen=slang     \
+    --enable-vfs-undelfs    \
     --enable-vfs-sftp || { cat config.log; exit 1; }
 
 make -j$CPU_COUNT
