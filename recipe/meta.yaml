@@ -31,7 +31,7 @@ requirements:
 
 test:
   commands:
-    - mc --version
+    - mc --version  # [build_platform == target_platform]
 
 about:
   home: https://www.midnight-commander.org/
