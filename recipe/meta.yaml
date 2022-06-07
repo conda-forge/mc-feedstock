@@ -1,5 +1,5 @@
 {% set name = "mc" %}
-{% set version = "4.8.27" %}
+{% set version = "4.8.28" %}
 
 package:
   name: {{ name|lower }}
@@ -7,17 +7,18 @@ package:
 
 source:
   url: https://www.midnight-commander.org/downloads/mc-{{ version }}.tar.xz
-  sha256: 31be59225ffa9920816e9a8b3be0ab225a16d19e4faf46890f25bdffa02a4ff4
+  sha256: e994d9be9a7172e9ac4a4ad62107921f6aa312e668b056dfe5b8bcebbaf53803
 
 build:
-  number: 2
-  skip: True  # [win]
+  number: 1
+  skip: true  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - make
     - pkg-config
+    - gnuconfig   # [unix]
   host:
     - openssl
     - glib
@@ -31,14 +32,14 @@ requirements:
 
 test:
   commands:
-    - mc --version
+    - mc --version  # [build_platform == target_platform]
 
 about:
   home: https://www.midnight-commander.org/
   license: GPL-3.0-or-later
   license_family: GPL
   license_file: COPYING
-  summary: 'GNU Midnight Commander is a visual file manager'
+  summary: GNU Midnight Commander is a visual file manager
   description: |
     GNU Midnight Commander is a visual file manager, licensed under GNU General
     Public License and therefore qualifies as Free Software. It's a feature
