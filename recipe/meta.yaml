@@ -1,5 +1,5 @@
 {% set name = "mc" %}
-{% set version = "4.8.28" %}
+{% set version = "4.8.29" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://www.midnight-commander.org/downloads/mc-{{ version }}.tar.xz
-  sha256: e994d9be9a7172e9ac4a4ad62107921f6aa312e668b056dfe5b8bcebbaf53803
+  sha256: 01d8a3b94f58180cca5bf17257b5078d1fd6fd27a9b5c0e970ec767549540ad4
 
 build:
   number: 0
@@ -25,6 +25,7 @@ requirements:
     - libssh2
     - slang
     - gettext
+    - zlib
   run:
     - libssh2
     - slang
