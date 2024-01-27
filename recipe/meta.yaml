@@ -34,7 +34,7 @@ requirements:
 
 test:
   commands:
-    - mc --version  # [build_platform == target_platform]
+    - TERM=xterm $PREFIX/bin/mc --version  # [build_platform == target_platform]
 
 about:
   home: https://www.midnight-commander.org/
