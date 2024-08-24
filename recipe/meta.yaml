@@ -1,5 +1,5 @@
 {% set name = "mc" %}
-{% set version = "4.8.31" %}
+{% set version = "4.8.32" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://www.midnight-commander.org/downloads/mc-{{ version }}.tar.xz
-  sha256: 24191cf8667675b8e31fc4a9d18a0a65bdc0598c2c5c4ea092494cd13ab4ab1a
+  sha256: 4ddc83d1ede9af2363b3eab987f54b87cf6619324110ce2d3a0e70944d1359fe
 
 build:
   number: 0
@@ -16,6 +16,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - make
     - pkg-config
     - gnuconfig   # [unix]
