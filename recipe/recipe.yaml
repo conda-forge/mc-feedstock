@@ -1,0 +1,78 @@
+context:
+  version: 4.8.33
+
+package:
+  name: mc
+  version: ${{ version }}
+
+source:
+  - url: https://ftp.osuosl.org/pub/midnightcommander/mc-${{ version }}.tar.xz
+    sha256: cae149d42f844e5185d8c81d7db3913a8fa214c65f852200a9d896b468af164c
+
+build:
+  number: 1
+
+  python:
+    version_independent: true
+
+  skip:
+    - win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - make
+    - pkg-config
+    - gettext
+    - if: unix
+      then:
+        - gnuconfig
+        - python ${{ python_min }}.*
+        - perl
+  host:
+    - if: unix
+      then:
+        - python ${{ python_min }}.*
+        - perl
+    - if: linux
+      then:
+        - e2fsprogs-libs
+    - glib
+    - libssh2
+    - zlib
+    - slang
+  run:
+    - if: unix
+      then:
+        - binutils
+        - file
+        - python *
+
+tests:
+  - if: build_platform == target_platform
+    then:
+      - script:
+          - TERM=xterm $PREFIX/bin/mc --version
+
+about:
+  homepage: https://www.midnight-commander.org/
+  license: GPL-3.0-or-later
+  license_file: COPYING
+  summary: GNU Midnight Commander is a visual file manager
+  description: |
+    GNU Midnight Commander is a visual file manager, licensed under GNU General
+    Public License and therefore qualifies as Free Software. It's a feature
+    rich full-screen text mode application that allows you to copy, move and
+    delete files and whole directory trees, search for files and run commands
+    in the subshell. Internal viewer and editor are included.
+
+    Midnight Commander is based on versatile text interfaces, such as Ncurses
+    or S-Lang, which allows it to work on a regular console, inside an X Window
+    terminal, over SSH connections and all kinds of remote shells.
+  documentation: https://midnight-commander.org/wiki/doc
+  repository: https://github.com/MidnightCommander/mc
+
+extra:
+  recipe-maintainers:
+    - matthiasdiener
