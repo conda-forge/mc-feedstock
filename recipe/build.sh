@@ -9,6 +9,7 @@ if [[ $target_platform == linux-* ]]; then
     EXTRA_ARGS=--enable-vfs-undelfs
 fi
 
+PERL=$PREFIX/bin/perl       \
 ./configure                 \
     --prefix=$PREFIX        \
     --disable-debug         \
